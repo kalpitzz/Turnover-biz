@@ -1,19 +1,26 @@
-import { type AppType } from "next/app";
-import { Inter } from "next/font/google";
-
-import { api } from "~/utils/api";
-
 import "~/styles/globals.css";
+import AuthCheck from "~/components/AuthCheck";
+import { api } from "~/utils/api";
+import { Theme } from '@radix-ui/themes';
+import { Provider } from 'react-redux'
+import { reduxStore } from "../../redux/store";
+import { type AppType } from "next/app";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+
 const MyApp: AppType = ({ Component, pageProps }) => {
+
+
+
   return (
-    <main className={`font-sans ${inter.variable}`}>
-      <Component {...pageProps} />
-    </main>
+    <Provider store={reduxStore}>
+      <Theme>
+        <main className={`font-sans`}>
+          <AuthCheck>
+            <Component {...pageProps} />
+          </AuthCheck>
+        </main>
+      </Theme>
+    </Provider>
   );
 };
 

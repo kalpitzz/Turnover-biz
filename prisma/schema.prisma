@@ -18,3 +18,15 @@ model Post {
 
     @@index([name])
 }
+
+model Profile {
+    id     Int     @id @default(autoincrement())
+    bio    String?
+    userId Int     @unique
+}
+
+model Kalpit {
+    id     Int     @id @default(autoincrement())
+    bio    String?
+    userId Int     @unique
+}
